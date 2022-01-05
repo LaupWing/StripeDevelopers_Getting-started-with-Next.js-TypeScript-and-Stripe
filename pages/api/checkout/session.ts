@@ -11,13 +11,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) =>{
       line_items: [
          {
            // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-           price: '{{PRICE_ID}}',
+           price: process.env.PRICE_ID,
            quantity: 1,
          },
        ],
        mode: 'payment',
        success_url: `/success.html`,
-       cancel_url: `/cancel.html`,
+       cancel_url: req.headers.origin,
    })
    res.status(200).json({name: 'John Doe'})
 }
