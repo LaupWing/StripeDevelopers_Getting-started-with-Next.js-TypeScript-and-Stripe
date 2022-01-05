@@ -19,5 +19,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) =>{
        success_url: `/success.html`,
        cancel_url: req.headers.origin,
    })
-   res.status(200).json({name: 'John Doe'})
+   res.status(200).json({sessionId: session.id})
 }
