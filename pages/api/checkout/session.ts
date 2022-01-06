@@ -6,13 +6,15 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 
 
 export default async (req: NextApiRequest, res: NextApiResponse) =>{
+   const {quantity} = req.body
+
    const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
          {
            // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
            price: process.env.PRICE_ID,
-           quantity: 1,
+           quantity,
          },
        ],
        mode: 'payment',
