@@ -8,8 +8,9 @@ const Checkout = () => {
          method: 'POST',
          headers:{
             "content-type" : 'application/json'
-         }
-      })
+         },
+         body: JSON.stringify({quantity: 1})
+      }).then(res=>res.json())
       const stripe = await stripePromise
 
       const {error} = await stripe.redirectToCheckout({
